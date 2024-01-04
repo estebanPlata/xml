@@ -1,0 +1,368 @@
+swagger: "2.0"
+info:
+  title: "Invoice XML"
+  description:
+    "It transforms JSON in XML, replace data and return the XML encoded in base 64..."
+  contact:
+    name: "Business Solutions"
+    email: "jose.rojas@colcomercio.com.co"
+  version: "0.1.26"
+tags:
+  - name: "main"
+    description: "Main method."
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /main/:
+    x-swagger-router-controller: "main.controller"
+    post:
+      tags:
+        - "main"
+      summary: "Return the xml."
+      description: "Recieve a json invoice data and it tranform in a xml."
+      operationId: "transform"
+      parameters:
+        - name: "Request"
+          in: "body"
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        200:
+          description: "Ok."
+          schema:
+            $ref: '#/definitions/200'
+        400:
+          description: "Bad Request."
+          schema:
+            $ref: '#/definitions/400'
+        404:
+          description: "Not Found."
+          schema:
+            $ref: '#/definitions/404'
+        408:
+          description: "Request Timeout."
+          schema:
+            $ref: '#/definitions/408'
+        500:
+          description: "Internal Server Error."
+          schema:
+            $ref: '#/definitions/500'
+  /swagger:
+    x-swagger-pipe: "swagger_raw"
+definitions:
+  Request:
+    type: object
+    example: {
+      "DocumentType": "4",
+      "InvoiceAuthorization": "310000094762",
+      "StartDate": "2019-07-01",
+      "EndDate": "2019-12-26",
+      "Prefix": "0105",
+      "From": "1000000",
+      "To": "999999999",
+      "ProviderID": "900306823",
+      "EbillCheckDigit": "85",
+      "EbillDocumentType": "45",
+      "SoftwareID": "12a9c0758b-735b-4951-b4d6-22247d434132",
+      "SoftwareSecurityCode": "hola8f9d9d22d4c3381a0282e8f3beb5de3ef45739ff389cf8855476a26e26a9dbffeadbe6538f19c3fb43aa366a20149984",
+      "QRCode": "https://mca.dian.gov.co/WebFacturaelectronica/paginas/VerificarFacturaElectronicaExterno.faces?TipoDocumento=1NroDocumento=PRUE980078932NITFacturador=890101815NumIdentAdquiriente=900108281Cufe=bf8b43bc09bdf01204dd2f1dcae2b51ea02e849f29257140fc00dc9b65aa953y",
+      "UBLVersionID": "UBL 2.1",
+      "CustomizationID": "78503255",
+      "ProfileID": "DIAN 2.1",
+      "ProfileExecutionID": "2",
+      "ID": "01041883548",
+      "UUID": "9a4f9dc0e1472de098a580957efdf163785f361975",
+      "CUFEAlgorithm": "CUFE-SHA374",
+      "CUDEAlgorithm":"CUDE-SHA384",
+      "IssueDate": "2018-03-22",
+      "IssueTime": "12:09:31",
+      "DueDate": "2018-04-05",
+      "InvoiceTypeCode": "1",
+      "Note": "0",
+      "DocumentCurrencyCode": "COP",
+      "LineCountNumeric": "1",
+      "orderReferenceId": "1567",
+      "IssueDateOrder":"2019-02-02",
+      "CustomerAssignedAccountID": "1",
+      "languageID": "es",
+      "DiscrepancyResponse": {
+        "ReferenceID": "4",
+        "ResponseCode": "5",
+        "Description":"Hola"
+      },
+      "BillingReference": {
+        "IDBillingRef": "F00450",
+        "UUIDBillingRef": "7658d61813857ec2f000dfd29e7b1ab6844d4ec8JK",
+        "SchemeName":"3",
+        "IssueDate":"2019-02-03"
+      },
+      "msgEmpresa": {
+        "AccountIdEmpresa": "1",
+        "TaxScheme": {
+          "ID": "01",
+          "Name": "IVA"
+        },
+        "CorporateRegistrationScheme": {
+          "ID": "BCD",
+          "Name": "123485"
+        },
+        "CityName": "BOGOTÁ D.C.",
+        "CountrySubentity": "Bogotá, D.C.",
+        "CountrySubentityCode": "11",
+        "ID": "11001",
+        "IdentificationCode": "COO",
+        "Line": "CLl 11#31A -  421",
+        "Name": "colombia",
+        "Nit": "890900943",
+        "PostalZone": "1111111",
+        "RegistrationName": "COLOMBIANA DE COMERCIO S.A.1",
+        "TaxLevelCode": "O-99",
+        "listName": "05",
+        "schemeAgencyID": "195",
+        "schemeAgencyName": "CO, DIAN (Dirección de Impuestos y Aduanas Nacionales)",
+        "schemeID": "1",
+        "schemeName": "32",
+        "ElectronicMailEmp":"eric.valencia@ket.co",
+		    "NameContacEmp":"Ana Blanco"
+      },
+      "msgMandato": {
+        "CitySubdivisionName": "",
+        "CityName": "",
+        "PostalZone": "00000",
+        "CountrySubentity": "BOGOTA",
+        "Line": "",
+        "Description": "",
+        "IdMandato": "",
+        "ExtendedID": "",
+        "IdMandatoAdi": ""
+      },
+      "msgCliente": {
+        "AccountIdCliente": "1",
+        "ID": "11001",
+        "IdCliente": "900108281",
+        "NameCliente": "ABELARDO OLAVE RODRIGUEZ",
+        "CityNameCliente": "BOGOTA",
+        "PostalZone": "111111",
+        "CountrySubentity": "Districto Capital",
+        "CountrySubentityCode": "12",
+        "LineCliente": "CR 9 A N0 99 - 08 OF 802",
+        "IdentificationCode": "CO",
+        "Name": "Colombia",
+        "TaxLevelCode": "O-98",
+        "RegimenClient": "05",
+        "ElectronicMail": "xyz@area.com.co",
+        "TaxSchemeID": "01",
+        "TaxSchemeName": "IVA",
+        "CompanySchemeName": "31",
+        "ContacNameCliente": "Pedro Perez"
+      },
+      "PaymentMeans": {
+        "ID": "2",
+        "PaymentMeansCode": "8"
+      },
+      "AllowanceCharge": [{
+          "ID": "1",
+          "ChargeIndicator": "false",
+          "AllowanceChargeReason": "Discount",
+          "MultiplierFactorNumeric": "25.00",
+          "Amount": "50000.00",
+          "BaseAmount": "300000.00"
+        }],
+      "TaxTotal": [{
+          "TaxAmount": "9510.36",
+          "TaxSubtotal": [{"TaxableAmount": "46.00",
+          "Percent": "20.00",
+          "IdTax": "01",
+          "NameTax": "IVA","BaseUnitMeasure":"1","PerUnitAmount":"3547","UnitCode":"BS"}]
+        }],
+      "LineExtensionAmount": "2310689.00",
+      "TaxInclusiveAmount": "1",
+      "TaxExclusiveAmount": "2272960.71",
+      "AllowanceTotalAmount": "37728.29",
+      "ChargeTotalAmount": "0",
+      "PayableAmount": "2721397.22",
+      "InvoiceLine": [{
+        "IDInvoiceLine": "1",
+        "InvoicedQuantity": "2.00",
+        "UnitCode": "UND",
+        "LineExtensionAmount": "250000.00",
+        "FreeOfChargeIndicator": "false",
+        "PriceAmountReference": "50000",
+        "PriceTypeCodeReference": "04",
+        "BaseQuantity": "1",
+        "PriceAmount": "200.00",
+        "UnitCodePrice": "1",
+        "AllowanceCharge": [{
+          "ID": "1",
+          "ChargeIndicator": "false",
+          "AllowanceChargeReason": "Discount",
+          "MultiplierFactorNumeric": "25.00",
+          "Amount": "50000.00",
+          "BaseAmount": "300000.00"
+        }],
+        "DescriptionLine": "Anti OldSpi BarraFresh 50g ",
+        "StandardItemIdentificationID": "18937100-9",
+        "SchemeID": "999",
+        "AdditionalItemProperty": [{
+          "Name": "x",
+          "Value": "y"
+        }]
+      }, {
+        "IDInvoiceLine": "2",
+        "InvoicedQuantity": "2.00",
+        "UnitCode": "UND",
+        "LineExtensionAmount": "250000.00",
+        "FreeOfChargeIndicator": "false",
+        "PriceAmount": "20000",
+        "UnitCodePrice": "1",
+        "BaseQuantity": "1",
+        "DescriptionLine": "Hueso Carnaza De 6 Pulg x1 Und ",
+        "StandardItemIdentificationID": "18937100-9",
+        "SchemeID": "999"
+      }, {
+        "IDInvoiceLine": "3",
+        "InvoicedQuantity": "2.00",
+        "UnitCode": "UND",
+        "LineExtensionAmount": "250000.00",
+        "FreeOfChargeIndicator": "false",
+        "UnitCodePrice": "1",
+        "PriceAmount": "20000",
+        "BaseQuantity": "1",
+        "PriceAmountReference": "90000",
+        "PriceTypeCodeReference": "14",
+        "AllowanceCharge": [{
+          "ID": "1",
+          "ChargeIndicator": "true",
+          "AllowanceChargeReason": "Discount",
+          "MultiplierFactorNumeric": "25.00",
+          "Amount": "50000.00",
+          "BaseAmount": "800000.00"
+        }],
+        "TaxTotal": [{
+          "TaxAmount": "9510.36",
+          "TaxSubtotal": [{"TaxableAmount": "46.00",
+          "Percent": "20.00",
+          "IdTax": "01",
+          "NameTax": "IVA","BaseUnitMeasure":"1","PerUnitAmount":"3547","UnitCode":"BS"}]
+        }],
+        "ExtensionAmountLine": "52850.00",
+        "DescriptionLine": "Papa Pringles Original 137g ",
+        "StandardItemIdentificationID": "18934100-9",
+        "SchemeID": "999"
+      },{
+        "IDInvoiceLine": "4",
+        "InvoicedQuantity": "3.00",
+        "UnitCode": "UND",
+        "LineExtensionAmount": "250000.00",
+        "FreeOfChargeIndicator": "false",
+        "PriceAmount": "20000",
+        "UnitCodePrice": "1",
+        "BaseQuantity": "1",
+        "DescriptionLine": "Hueso Hola De 6 Pulg x1 Und ",
+        "StandardItemIdentificationID": "18937100-9",
+        "SchemeID": "999",
+        "TaxTotal": [{
+          "TaxAmount": "9510.36",
+          "TaxSubtotal": [{"TaxableAmount": "46.00",
+          "Percent": "20.00",
+          "IdTax": "01",
+          "NameTax": "IVA"}]
+        }],	"AdditionalItemProperty": [{
+          "Name": "ZZZ",
+          "Value": "yeufg"
+        }]
+      },{
+        "IDInvoiceLine": "5",
+        "InvoicedQuantity": "2.00",
+        "UnitCode": "UND",
+        "LineExtensionAmount": "250000.00",
+        "FreeOfChargeIndicator": "false",
+        "UnitCodePrice": "1",
+        "PriceAmount": "20000",
+        "BaseQuantity": "1",
+        "PriceAmountReference": "780000",
+        "PriceTypeCodeReference": "14",
+        "ExtensionAmountLine": "52850.00",
+        "DescriptionLine": "Papa Pringles Original 137g ",
+        "StandardItemIdentificationID": "18934100-9",
+        "SchemeID": "999"
+      }]
+    }
+  200:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: true
+        description: "The status of the transaction."
+      message:
+        type: string
+        description: "The transaction was successful."
+      data:
+        type: object
+        properties:
+          xml:
+            type: string
+            description: "Return the xml encoded in base 64."
+    example:
+      success: true
+      message: "La transaccion fue exitosa. Descripcion adicional."
+      data: {
+        "xml": "77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8ZmU6Q3JlZGl0Tm90ZSB4bWxuczpmZT0iaHR0cDovL3d3dy5kaWFuLmdvdi5jby9jb250cmF0b3MvZmFjdHVyYWVsZWN0cm9uaWNhL3YxIiB4bWxuczpj"
+      }
+  400:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: false
+        description: "The status of the transaction."
+      message:
+        type: string
+        description: "The supplied parameters are not valid."
+    example:
+      success: false
+      message: "Los parametros suministrados no son validos. Descripcion adicional."
+  404:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: false
+        description: "The status of the transaction."
+      message:
+        type: string
+        description: "Badly defined request."
+    example:
+      success: false
+      message: "Peticion mal definida. Descripcion adicional."
+  408:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: false
+        description: "The status of the transaction."
+      message:
+        type: string
+        description: "The waiting time has run out."
+    example:
+      success: false
+      message: "El tiempo de espera se agoto. Descripcion adicional."
+  500:
+    type: object
+    properties:
+      success:
+        type: boolean
+        default: false
+        description: "The status of the transaction."
+      message:
+        type: string
+        description: "An internal error has occurred on the server."
+    example:
+      success: false
+      message: "Ha ocurrido un error interno en el servidor. Descripcion adicional."

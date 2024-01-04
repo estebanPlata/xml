@@ -1,0 +1,94 @@
+#!groovy​
+pipeline {
+  agent {
+    label 'k5'
+  }
+
+  options {
+    buildDiscarder logRotator(
+      artifactDaysToKeepStr: '',
+      artifactNumToKeepStr: '',
+      daysToKeepStr: '',
+      numToKeepStr: '10'
+    )
+  }
+
+  environment {
+    CONTAINER_NAME = "ck-invoicexml"
+    VERSION = "QA0.1.23"
+    PORT = "44473"
+    IMAGE = "registry.gitlab.com/alkosto/microservices/${CONTAINER_NAME}:${VERSION}"
+    EMAIL_TO = "gabriela.ponceleon.ext@colcomercio.com.co"
+    SONAR_RUNNER = "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/bin"
+    TEST_COVERAGE_REPO = "https://gitlab.com/alkosto/microservices/test-coverage.git"
+    TEST_COVERAGE_IMAGE = "registry.gitlab.com/alkosto/microservices/test-coverage:0.0.1"
+    TEST_COVERAGE_TEMPLATE = "1"
+    SELENIUM_HUB="http://selenium-hub:4444/wd/hub"
+    SEVICE_VIRTUALIZATION_NAME="mountbank"
+  }
+
+  stages {
+    stage ('SonarQube Analysis') {
+      steps {
+        withSonarQubeEnv ('sonarDocker') {
+          sh "${env.SONAR_RUNNER}/sonar-scanner -X"
+        }
+      }
+    }
+
+    stage("Quality Gate") {
+      steps {
+        timeout(time: 60, unit: 'SECONDS') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+    }
+
+    stage('Build Image') {
+      steps {
+        sh "docker rmi -f ${IMAGE}"
+        sh "docker build -t ${IMAGE} ."
+      }
+    }
+
+    stage('Run Container') {
+      steps {
+        dir ('devops') {
+          sh "chmod +x run.sh"
+          sh "./run.sh ${CONTAINER_NAME} ${PORT} ${IMAGE}"
+          sh "docker network connect testing ${CONTAINER_NAME}"
+        }
+      }
+    }
+
+    stage("Unit Tests") {
+      steps {
+        sh "docker exec ${CONTAINER_NAME} npm run coverage"
+        sh "docker exec ${CONTAINER_NAME} npm run report"
+      }
+    }
+
+    stage("Code Coverage") {
+      steps {
+        sh "docker rmi -f ${TEST_COVERAGE_IMAGE}"
+        sh "docker pull ${TEST_COVERAGE_IMAGE}"
+        sh "docker run --rm -i -e HOST='${CONTAINER_NAME}' -e PORT='80' -e TEMPLATE='${TEST_COVERAGE_TEMPLATE}' -e SELENIUM_HUB=${SELENIUM_HUB} --network=testing ${TEST_COVERAGE_IMAGE}"
+      }
+    }
+  }
+
+  post {
+    always {
+      sh "docker network disconnect testing ${CONTAINER_NAME}"
+      sh "docker stop ${CONTAINER_NAME}"
+      sh "docker rm ${CONTAINER_NAME}"
+      sh "docker rmi -f ${IMAGE}"
+    }
+
+    failure {
+      emailext body: '${DEFAULT_CONTENT}',
+      to: env.EMAIL_TO,
+      subject: '${DEFAULT_SUBJECT}'
+    }
+  }
+}

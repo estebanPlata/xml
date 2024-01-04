@@ -1,0 +1,109 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: qa
+  labels:
+    app: ck-invoicexml
+    version: 0.1.15
+    environment: qa
+  name: ck-invoicexml
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ck-invoicexml
+      version: 0.1.15
+  template:
+    metadata:
+      labels:
+        app: ck-invoicexml
+        version: 0.1.15
+        environment: qa
+      name: ck-invoicexml
+    spec:
+      containers:
+      - env:
+        - name: APP
+          value: ck-invoicexml
+        - name: HOST
+          value: localhost
+        - name: PORT
+          value: "80"
+        - name: DOCS
+          value: /invoice/microservices/xml/docs
+        - name: ROUTE
+          value: /invoice/microservices/xml
+        - name: TIMEOUT
+          value: "4000"
+        - name: SIZE_JSON
+          value: "50mb"
+        - name: ENVIRONMENT
+          value: "QA"
+        - name: FILE_01
+          value: "DianFactura_V2.xml"
+        - name: FILE_02
+          value: "DianFacturaMandatoONLI-100134.xml"
+        - name: FILE_03
+          value: "DianNotaCredito_V2.xml"
+        - name: FILE_04
+          value: "DianNotaDebito_V2.xml"
+        - name: DOCTYPE_01
+          value: "1"
+        - name: DOCTYPE_02
+          value: "2"
+        - name: DOCTYPE_03
+          value: "3"
+        - name: DOCTYPE_04
+          value: "4"
+        - name: MAIL_URI
+          value: http://10.181.3.180:32470/utils/microservice/sendmail
+        - name: MAIL_TO
+          value: miguel.caro@colcomercio.com.co
+        - name: MSG_200
+          value: La transaccion fue exitosa.
+        - name: MSG_201
+          value: El recurso ha sido creado.
+        - name: MSG_204
+          value: La transaccion fue exitosa, pero no contiene una respuesta.
+        - name: MSG_400
+          value: Los parametros suministrados no son validos.
+        - name: MSG_401
+          value: No esta autorizado.
+        - name: MSG_404
+          value: Peticion mal definida.
+        - name: MSG_408
+          value: El tiempo de espera se agoto.
+        - name: MSG_500
+          value: Ha ocurrido un error interno en el servidor.
+        - name: METRICS
+          value: 'Y'
+        image: registry.gitlab.com/alkosto/microservices/ck-invoicexml:0.1.15
+        imagePullPolicy: IfNotPresent
+        name: ck-invoicexml
+        volumeMounts:
+        - mountPath: /var/app/assets/
+          name: invoicexml-volume
+        ports:
+        - containerPort: 80
+          name: portinvoicexml
+          protocol: TCP
+        resources: {}
+        securityContext:
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      volumes:
+      - name: invoicexml-volume
+        hostPath:
+          # directory location on host
+          path: /home/admin/volumes/xml/
+          # this field is optional
+          type: Directory
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gitlab-registry-secret
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}

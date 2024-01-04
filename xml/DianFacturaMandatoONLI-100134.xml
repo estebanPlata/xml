@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<fe:Invoice
+	xmlns:fe="http://www.dian.gov.co/contratos/facturaelectronica/v1"
+	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+	xmlns:clm54217="urn:un:unece:uncefact:codelist:specification:54217:2001"
+	xmlns:clm66411="urn:un:unece:uncefact:codelist:specification:66411:2001"
+	xmlns:clmIANAMIMEMediaType="urn:un:unece:uncefact:codelist:specification:IANAMIMEMediaType:2003"
+	xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
+	xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2"
+	xmlns:sts="http://www.dian.gov.co/contratos/facturaelectronica/v1/Structures"
+	xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dian.gov.co/contratos/facturaelectronica/v1 ../xsd/DIAN_UBL.xsd urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2 ../../ubl2/common/UnqualifiedDataTypeSchemaModule-2.0.xsd urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2 ../../ubl2/common/UBL-QualifiedDatatypes-2.0.xsd">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<sts:DianExtensions>
+					<sts:InvoiceControl>
+						<sts:InvoiceAuthorization></sts:InvoiceAuthorization>
+						<sts:AuthorizationPeriod>
+							<cbc:StartDate></cbc:StartDate>
+							<cbc:EndDate></cbc:EndDate>
+						</sts:AuthorizationPeriod>
+						<sts:AuthorizedInvoices>
+							<sts:Prefix></sts:Prefix>
+							<sts:From></sts:From>
+							<sts:To></sts:To>
+						</sts:AuthorizedInvoices>
+					</sts:InvoiceControl>
+					<sts:InvoiceSource>
+						<cbc:IdentificationCode listAgencyID="6" listAgencyName="United Nations Economic Commission for Europe" listSchemeURI="urn:oasis:names:specification:ubl:codelist:gc:CountryIdentificationCode-2.0">CO</cbc:IdentificationCode>
+					</sts:InvoiceSource>
+					<sts:SoftwareProvider>
+						<sts:ProviderID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)"></sts:ProviderID>
+						<sts:SoftwareID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)"></sts:SoftwareID>
+					</sts:SoftwareProvider>
+					<sts:SoftwareSecurityCode schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)"></sts:SoftwareSecurityCode>
+				</sts:DianExtensions>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+		<ext:UBLExtension>
+			<ext:ExtensionContent />
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID></cbc:UBLVersionID>
+	<cbc:ProfileID></cbc:ProfileID>
+	<cbc:ID></cbc:ID>
+	<cbc:UUID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)" />
+	<cbc:IssueDate></cbc:IssueDate>
+	<cbc:IssueTime></cbc:IssueTime>
+	<cbc:InvoiceTypeCode listAgencyID="195" listAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)" listSchemeURI="http://www.dian.gov.co/contratos/facturaelectronica/v1/InvoiceType"></cbc:InvoiceTypeCode>
+	<cbc:Note></cbc:Note>
+	<cbc:DocumentCurrencyCode></cbc:DocumentCurrencyCode>
+	<fe:AccountingSupplierParty>
+		<cbc:CustomerAssignedAccountID></cbc:CustomerAssignedAccountID>
+		<cbc:AdditionalAccountID></cbc:AdditionalAccountID>
+		<fe:Party>
+			<cac:PartyIdentification>
+				<cbc:ID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)" schemeID="0"></cbc:ID>
+			</cac:PartyIdentification>
+			<cac:PartyName>
+				<cbc:Name></cbc:Name>
+			</cac:PartyName>
+			<fe:PhysicalLocation>
+				<fe:Address>
+					<cbc:Department></cbc:Department>
+					<cbc:CitySubdivisionName></cbc:CitySubdivisionName>
+					<cbc:CityName></cbc:CityName>
+					<cac:AddressLine>
+						<cbc:Line></cbc:Line>
+					</cac:AddressLine>
+					<cac:Country>
+						<cbc:IdentificationCode></cbc:IdentificationCode>
+					</cac:Country>
+				</fe:Address>
+			</fe:PhysicalLocation>
+			<fe:PartyTaxScheme>
+				<cbc:RegistrationName></cbc:RegistrationName>
+				<cbc:CompanyID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)" schemeID="31" schemeName="NIT con DV del mandatario " schemeDataURI="http://www.dian.gov.co/micrositios/fac_electronica/documentos/Anexo_Tecnico_001_Formatos_de_los_Documentos_XML_de_Facturacion_Electron.pdf" schemeVersionID="'Tipos de documentos de identidad'"></cbc:CompanyID>
+				<cbc:TaxLevelCode listName="0" listSchemeURI="http://www.dian.gov.co/micrositios/fac_electronica/documentos/Anexo_Tecnico_001_Formatos_de_los_Documentos_XML_de_Facturacion_Electron.pdf" name=""></cbc:TaxLevelCode>
+				<cac:TaxScheme />
+			</fe:PartyTaxScheme>
+			<fe:PartyTaxScheme>
+				<cbc:TaxLevelCode listName="" listSchemeURI="http://www.dian.gov.co/micrositios/fac_electronica/documentos/Anexo_Tecnico_001_Formatos_de_los_Documentos_XML_de_Facturacion_Electron.pdf" name=""></cbc:TaxLevelCode>
+				<cac:TaxScheme />
+			</fe:PartyTaxScheme>
+			<fe:PartyLegalEntity>
+				<cbc:RegistrationName></cbc:RegistrationName>
+				<cac:RegistrationAddress>
+					<cbc:CitySubdivisionName></cbc:CitySubdivisionName>
+					<cbc:CityName></cbc:CityName>
+					<cbc:PostalZone></cbc:PostalZone>
+					<cbc:CountrySubentity></cbc:CountrySubentity>
+					<cac:AddressLine>
+						<cbc:Line></cbc:Line>
+					</cac:AddressLine>
+					<cac:Country />
+				</cac:RegistrationAddress>
+			</fe:PartyLegalEntity>
+		</fe:Party>
+	</fe:AccountingSupplierParty>
+	<fe:AccountingCustomerParty
+		xmlns:fe="http://www.dian.gov.co/contratos/facturaelectronica/v1"
+		xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+		xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+		<cbc:AdditionalAccountID>1</cbc:AdditionalAccountID>
+		<fe:Party>
+			<cac:PartyIdentification>
+				<cbc:ID schemeAgencyID="195" schemeAgencyName="CO, DIAN (Direccion de Impuestos y Aduanas Nacionales)" schemeID="0"></cbc:ID>
+			</cac:PartyIdentification>
+			<cac:PartyName>
+				<cbc:Name></cbc:Name>
+			</cac:PartyName>
+			<fe:PhysicalLocation>
+				<fe:Address>
+					<cbc:Department></cbc:Department>
+					<cbc:CitySubdivisionName></cbc:CitySubdivisionName>
+					<cbc:CityName></cbc:CityName>
+					<cac:AddressLine>
+						<cbc:Line></cbc:Line>
+					</cac:AddressLine>
+					<cac:Country>
+						<cbc:IdentificationCode></cbc:IdentificationCode>
+					</cac:Country>
+				</fe:Address>
+			</fe:PhysicalLocation>
+			<fe:PartyTaxScheme>
+				<cbc:TaxLevelCode></cbc:TaxLevelCode>
+				<cac:TaxScheme />
+			</fe:PartyTaxScheme>
+			<fe:PartyLegalEntity>
+				<cbc:RegistrationName></cbc:RegistrationName>
+			</fe:PartyLegalEntity>
+			<fe:Person>
+				<cbc:FirstName></cbc:FirstName>
+				<cbc:FamilyName></cbc:FamilyName>
+				<cbc:MiddleName></cbc:MiddleName>
+			</fe:Person>
+		</fe:Party>
+	</fe:AccountingCustomerParty>
+	<fe:TaxTotal
+		xmlns:fe="http://www.dian.gov.co/contratos/facturaelectronica/v1"
+		xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+		xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+		<cbc:TaxAmount currencyID="COP"></cbc:TaxAmount>
+		<cbc:TaxEvidenceIndicator></cbc:TaxEvidenceIndicator>
+		<fe:TaxSubtotal>
+			<cbc:TaxableAmount currencyID="COP"></cbc:TaxableAmount>
+			<cbc:TaxAmount currencyID="COP"></cbc:TaxAmount>
+			<cbc:Percent></cbc:Percent>
+			<cac:TaxCategory>
+				<cac:TaxScheme>
+					<cbc:ID></cbc:ID>
+				</cac:TaxScheme>
+			</cac:TaxCategory>
+		</fe:TaxSubtotal>
+	</fe:TaxTotal>
+	<fe:LegalMonetaryTotal>
+		<cbc:LineExtensionAmount currencyID="COP"></cbc:LineExtensionAmount>
+		<cbc:TaxExclusiveAmount currencyID="COP"></cbc:TaxExclusiveAmount>
+		<cbc:AllowanceTotalAmount currencyID="COP"></cbc:AllowanceTotalAmount>
+		<cbc:ChargeTotalAmount currencyID="COP"></cbc:ChargeTotalAmount>
+		<cbc:PayableAmount currencyID="COP"></cbc:PayableAmount>
+	</fe:LegalMonetaryTotal>
+	<fe:InvoiceLine
+		xmlns:fe="http://www.dian.gov.co/contratos/facturaelectronica/v1"
+		xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+		xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+		<cbc:ID />
+		<cbc:Note></cbc:Note>
+		<cbc:InvoicedQuantity></cbc:InvoicedQuantity>
+		<cbc:LineExtensionAmount currencyID="COP"></cbc:LineExtensionAmount>
+		<fe:Item>
+			<cbc:Description></cbc:Description>
+			<cac:SellersItemIdentification>
+				<cbc:ID></cbc:ID>
+				<cbc:ExtendedID schemeName="identificador del contrato de mandato o UT"></cbc:ExtendedID>
+				<cac:IssuerParty>
+					<cac:PartyIdentification>
+						<cbc:ID></cbc:ID>
+					</cac:PartyIdentification>
+				</cac:IssuerParty>
+			</cac:SellersItemIdentification>
+		</fe:Item>
+		<fe:Price>
+			<cbc:PriceAmount currencyID="COP"></cbc:PriceAmount>
+		</fe:Price>
+	</fe:InvoiceLine>
+</fe:Invoice>

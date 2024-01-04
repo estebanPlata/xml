@@ -1,0 +1,41 @@
+- hosts: k4
+  remote_user: admin
+  tasks:
+    - name: Create deploy directory
+      file:
+        path: "/home/admin/{{ CONTAINER_NAME }}"
+        state: directory
+        owner: admin
+        group: admin
+    - name: Copy shell script
+      copy:
+        src: run.sh
+        dest: "/home/admin/{{ CONTAINER_NAME }}"
+        owner: admin
+        group: admin
+        mode: a+x
+    - name: Copy shell script
+      copy:
+        src: image_exists.sh
+        dest: "/home/admin/{{ CONTAINER_NAME }}"
+        owner: admin
+        group: admin
+        mode: a+x
+    - name: Copy env file
+      copy:
+        src: qa.env
+        dest: "/home/admin/{{ CONTAINER_NAME }}"
+        owner: admin
+        group: admin
+    - name: Check if local image exist
+      shell: "sh /home/admin/{{ CONTAINER_NAME }}/image_exists.sh {{ IMAGE }}"
+      register: image_exists
+    - name: Docker image exists
+      command: "docker rmi -f {{ IMAGE }}"
+      when: image_exists.stdout == "exists"
+    - name: Pull docker image
+      command: "docker pull {{ IMAGE }}"
+    - name: Execute shell script
+      shell: "sh /home/admin/{{ CONTAINER_NAME }}/run.sh {{ CONTAINER_NAME }} {{ PORT }} {{ IMAGE }}"
+    - name: Delete folder
+      shell: "rm -rf /home/admin/{{ CONTAINER_NAME }}"

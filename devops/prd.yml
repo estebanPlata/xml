@@ -1,0 +1,23 @@
+- hosts: k2
+  remote_user: admin
+  tasks:
+    - name: "Create directory"
+      file:
+        path: "/home/admin/{{ CONTAINER_NAME }}"
+        state: directory
+        owner: admin
+        group: admin
+    - name: Copy files
+      copy:
+        src: ../deploy/qa/
+        dest: "/home/admin/{{ CONTAINER_NAME }}"
+        owner: admin
+        group: admin
+    - name: Service create or update
+      command: "kubectl apply -f /home/admin/{{ CONTAINER_NAME }}/Service.yml"
+    - name: Deployment create or update
+      command: "kubectl apply -f /home/admin/{{ CONTAINER_NAME }}/Deployment.yml"
+    - name: "Delete directory"
+      file:
+        path: "/home/admin/{{ CONTAINER_NAME }}"
+        state: absent

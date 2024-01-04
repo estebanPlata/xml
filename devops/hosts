@@ -1,0 +1,8 @@
+[all:vars]
+ansible_connection=ssh
+
+[qa]
+k4 ansible_host=10.181.3.183 ansible_port=22 ansible_user=admin ansible_ssh_private_key_file=/home/admin/.ssh/jenkins
+
+[prd]
+k2 ansible_host=10.181.3.181 ansible_port=22 ansible_user=admin ansible_ssh_private_key_file=/home/admin/.ssh/Jenkins

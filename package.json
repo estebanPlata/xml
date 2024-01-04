@@ -1,0 +1,49 @@
+{
+  "name": "ck-invoicexml",
+  "version": "0.1.26",
+  "private": true,
+  "description": "It transforms JSON in XML, replace data and return the XML encoded in base 64.",
+  "keywords": [],
+  "author": "Colombiana de Comercio S.A.",
+  "license": "ISC",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.12.3",
+    "moment": "^2.20.1",
+    "needle": "^2.5.2",
+    "node-cron": "^2.0.3",
+    "nyc": "14.1.1",
+    "prom-client": "^11.5.3",
+    "serve-favicon": "^2.5.0",
+    "swagger-express-mw": "^0.7.0",
+    "swagger-tools": "^0.10.3",
+    "uuid": "^3.2.1",
+    "winston": "^3.1.0",
+    "xml2js": "^0.4.19",
+    "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",    
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha test --exit",
+    "coverage": "nyc npm run test",
+    "report": "npx nyc report --reporter=html"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "api/**/*.js"
+    ],
+    "exclude": [
+      "api/controllers/*.js",
+      "api/routes/*.js",
+      "api/middlewares/*.js",
+      "api/helpers/*.js",
+      "api/services/util.service.js"
+    ]
+  }
+}

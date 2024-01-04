@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  app:
+    container_name: ck-invoicexml
+    hostname: ck-invoicexml
+    build: .
+    command: node --inspect=0.0.0.0:9309 app.js
+    ports:
+      - "3009:80"
+      - "9309:9309"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/app
+      - /var/app/node_modules
+      # - C:\Users\Assist-PC50\Documents\DocumentacionAlKosto\Ebill\plantillas:/var/app/assets/
+      #- C:\Users\1013606332\app\colcomercio\ck-dianebill\assets:/var/app/assets/
+      # - C:\Users\gabri\Documents\volumen\plantillas:/var/app/assets/
+      - ./xml:/var/app/assets/
